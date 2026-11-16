@@ -330,6 +330,10 @@ document.querySelectorAll('.rv').forEach(n=>io.observe(n));
 const links=[...document.querySelectorAll('#pills a')];
 const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
 document.querySelectorAll('section').forEach(s=>spy.observe(s));
+
+(function(){const t=document.querySelector('.title');if(!t)return;
+function fit(){t.style.fontSize='';let fs=parseFloat(getComputedStyle(t).fontSize);while(t.scrollWidth>t.clientWidth+1&&fs>22){fs-=2;t.style.fontSize=fs+'px'}}
+fit();addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);})();
 </script>
 </body>
 </html>
